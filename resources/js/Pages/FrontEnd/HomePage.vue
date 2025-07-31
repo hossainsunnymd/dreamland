@@ -4,6 +4,7 @@ import Navbar from '../../Compenents/Navbar.vue';
 import Footer from '../../Compenents/Footer.vue';
 import Hero from '../../Compenents/Hero.vue';
 import Home from '../../Compenents/Home.vue';
+import SearviceCard from '../../Compenents/SearviceCard.vue';
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import Home from '../../Compenents/Home.vue';
    <Navbar/>
    <Hero/>
    <Home/>
+   <SearviceCard/>
    <Footer/>
 </template>
 
