@@ -12,12 +12,12 @@ const headers = [
     { text: "Name", value: "name" },
     { text: "Email", value: "email" },
     { text: "BD Phone", value: "bd_mobile" },
-    { text: "Abroad Phone", value: "abroad_mobile" },
     { text: "Preffered Country", value: "prefferred_country" },
     { text: "Last Education", value: "last_education" },
+    { text: "PDF", value: "pdf" },
     { text: "Action", value: "action" },
 ];
-
+console.log(page.props.bookings);
 // Users and search fields
 const items = ref(page.props.bookings);
 
@@ -52,7 +52,7 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link :href="`/admin/booking-save-page?booking_id=${0}`" class="btn btn-success">
+        <Link v-if="page.props.user.can['booking-save']" :href="`/admin/booking-save-page?booking_id=${0}`" class="btn btn-success">
             Add Booking
         </Link>
     </div>
@@ -67,16 +67,19 @@ if (page.props.flash.status === false) {
         :rows-per-page="5"
         table-class="table table-striped table-bordered"
     >
+        <template #item-pdf="{ pdf }">
+            <a :href="`/storage/booking/${pdf}`" target="_blank">View</a>
+        </template>
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link
+                <Link v-if="page.props.user.can['booking-update']"
                     :href="`/admin/booking-save-page?booking_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button @click="deleteBooking(id)" class="btn btn-sm btn-danger">
+                <button v-if="page.props.user.can['booking-delete']" @click="deleteBooking(id)" class="btn btn-sm btn-danger">
                     Delete
                 </button>
             </div>

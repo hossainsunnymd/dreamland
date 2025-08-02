@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('service_name');
             $table->string('service_title');
+            $table->string('image');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

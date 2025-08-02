@@ -47,7 +47,7 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link
+        <Link v-if="page.props.user.can['success-stories-save']"
             :href="`/admin/success-stories-save-page?success_id=${0}`"
             class="btn btn-success"
         >
@@ -74,13 +74,13 @@ if (page.props.flash.status === false) {
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link
+                <Link v-if="page.props.user.can['success-stories-update']"
                     :href="`/admin/success-stories-save-page?success_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button
+                <button v-if="page.props.user.can['success-stories-delete']"
                     @click="deleteSuccessStory(id)"
                     class="btn btn-sm btn-danger"
                 >

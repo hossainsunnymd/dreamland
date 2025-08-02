@@ -39,7 +39,7 @@ class AuthController extends Controller
           }
           Auth::login($user);
           $token=JWTToken::createToken($user->email);
-          if($user->user_role=='admin'){
+          if($user->user_type=='admin'){
             return redirect('/admin/dashboard')->cookie('token', $token, 60);
           }else{
             return redirect('/student/dashboard')->cookie('token', $token, 60);

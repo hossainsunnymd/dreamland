@@ -2,6 +2,7 @@
 import { usePage, useForm, router } from "@inertiajs/vue3";
 import { createToaster } from "@meforma/vue-toaster";
 import { computed } from "vue";
+import CategoryImage from "./CategoryImage.vue";
 
 const toaster = createToaster();
 const page = usePage();
@@ -11,11 +12,13 @@ const errors = computed(() => page.props.errors || {});
 
 
 const form = useForm({
+    image: "",
     service_name: "",
     service_title: "",
 });
 
 if(service_category_id != 0 && serviceCategory != null){
+    form.image = serviceCategory.image;
     form.service_name = serviceCategory.service_name;
     form.service_title = serviceCategory.service_title;
 
@@ -57,6 +60,10 @@ function submitForm() {
               <label class="form-label"> Service Title</label>
               <input v-model="form.service_title" type="text" class="form-control" />
               <div v-if="errors.service_title" class="text-danger">{{ errors.service_title[0] }}</div>
+            </div>
+            <div class="mb-3">
+                <CategoryImage :categoryImage="form.image" @image="(e)=> form.image = e"/>
+                <div v-if="errors.image" class="text-danger">{{ errors.image[0] }}</div>
             </div>
 
             <div class="d-grid">

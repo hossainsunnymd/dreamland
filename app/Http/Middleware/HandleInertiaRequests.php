@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -36,11 +37,17 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+
+        $permissions = Permission::all();
+        $can = [];
+        foreach ($permissions as $permission) {
+            $can[$permission->name] = Auth::user() && Auth::user()->can($permission->name);
+        }
         return [
-            'user'=>[
-                'login'=>Auth::check()?true:false,
-                'user_role'=>Auth::check()? Auth::user()->user_role:null,
-                'user_id'=>Auth::check()? Auth::user()->id:null
+            'user' => [
+                'login' => Auth::check() ? true : false,
+                'authUser' => Auth::check() ? Auth::user():'',
+                'can' => $can
             ],
             'flash' => [
                 'status' => fn() => $request->session()->get('status'),

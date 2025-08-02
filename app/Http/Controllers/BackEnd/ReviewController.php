@@ -47,7 +47,7 @@ class ReviewController extends Controller
 
         StudentReview::create($data);
 
-        return back()->with('success', 'Review submitted successfully!');
+        return redirect()->back()->with(['status' => true, 'message' => 'Review saved successfully']);
     }
 
     public function reviewUpdate(ReviewSaveRequest $request, $id)
@@ -76,7 +76,7 @@ class ReviewController extends Controller
 
         $review->update($data);
 
-        return back()->with('success', 'Review updated successfully!');
+        return redirect()->back()->with(['status' => true, 'message' => 'Review updated successfully']);
     }
 
 
@@ -93,7 +93,7 @@ class ReviewController extends Controller
         // Delete review from database
         $review->delete();
 
-        return back()->with('success', 'Review deleted successfully!');
+        return redirect()->back()->with(['status' => true, 'message' => 'Review deleted successfully']);
     }
 
 

@@ -29,16 +29,23 @@ class BookingController extends Controller
     //create booking
     public function bookingSave(BookingSaveRequest $request){
 
-        Booking::create([
+        $data=[
             'user_id'=>$request->user_id,
             'name'=>$request->name,
             'email'=>$request->email,
             'bd_mobile'=>$request->bd_phone,
-            'abroad_mobile'=>$request->abroad_phone,
             'last_education'=>$request->last_education,
             'prefferred_country'=>$request->prefferred_country,
-        ]);
+        ];
 
+        if($request->hasFile('pdf')) {
+            $file = $request->file('pdf');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('booking', $fileName);
+            $data['pdf'] = $fileName;
+        }
+
+        Booking::create($data);
         return redirect()->back()->with(['status'=>true,'message'=>'Booking Saved Successfully']);
     }
 
@@ -49,7 +56,6 @@ class BookingController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'bd_mobile'=>$request->bd_phone,
-            'abroad_mobile'=>$request->abroad_phone,
             'last_education'=>$request->last_education,
             'prefferred_country'=>$request->prefferred_country,
         ]);

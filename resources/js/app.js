@@ -1,5 +1,5 @@
 import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/vue3'
+import { createInertiaApp, router } from '@inertiajs/vue3'
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 import "bootstrap/dist/css/bootstrap.css";
@@ -7,6 +7,10 @@ import "bootstrap";
 import "./bootstrap";
 import "../css/SideNav.css";
 import "../css/style.css";
+import NProgress from 'nprogress'
+
+
+
 
 
 
@@ -25,3 +29,14 @@ createInertiaApp({
 })
 
 
+router.on('start', () => {
+  NProgress.start()
+})
+router.on('finish', () => {
+  NProgress.done()
+});
+
+
+router.on('progress', progress => {
+  console.log(progress)
+})

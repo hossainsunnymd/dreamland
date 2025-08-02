@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Services extends Model
 {
     protected $fillable=[
-        'service_id',
+        'service_category_id',
         'service_description',
-        'image',
+        'service_image',
+        'rank'
     ];
+
+    public function serviceCategory(){
+        return $this->belongsTo(ServiceCategory::class);
+    }
 }

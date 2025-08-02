@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
-            $table->string('user_role')->default('student');
+            $table->string('abroad_mobile')->nullable();
+            $table->string('user_type')->default('student');
             $table->string('profile_image')->nullable();
-            $table->string('is_active')->default('disable');
+            $table->string('is_active')->default('Enable');
             $table->string('otp');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

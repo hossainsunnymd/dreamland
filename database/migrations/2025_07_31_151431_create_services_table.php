@@ -19,6 +19,7 @@ return new class extends Migration
             ->cascadeOnUpdate();
             $table->longText('service_description');
             $table->string('service_image');
+            $table->integer('rank')->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

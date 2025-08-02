@@ -13,6 +13,7 @@ class Booking extends Model
         'bd_mobile',
         'abroad_mobile',
         'last_education',
-        'prefferred_country'
+        'prefferred_country',
+        'pdf',
     ];
 }

@@ -8,6 +8,7 @@ class ServiceCategory extends Model
 {
     protected $fillable=[
         'service_name',
-        'service_title'
+        'service_title',
+        'image'
     ];
 }

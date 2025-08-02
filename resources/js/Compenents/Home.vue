@@ -8,13 +8,13 @@ const page = usePage();
 const errors = computed(() => page.props.errors || {});
 
 const form = useForm({
-    user_id: page.props.user.user_id,
+    user_id: page.props.user.authUser.id,
     name: "",
     email: "",
     bd_phone: "",
-    abroad_phone: "",
     last_education: "",
     prefferred_country: "",
+    pdf: "",
 });
 
 // Custom dropdown logic
@@ -27,13 +27,14 @@ const toggleDropdown = () => {
 
 const selectCountry = (country) => {
     selectedCountry.value = country;
-    form.prefferred_country = country.countryname;  
+    form.prefferred_country = country.country_name;
     isOpen.value = false;
 };
 
 function submitForm() {
-    form.post("/admin/booking", {
+    form.post("/student/booking", {
         preserveScroll: true,
+        forceFormData: true,
         onSuccess: () => {
             if (page.props.flash.status == false) {
                 toaster.error(page.props.flash.message);
@@ -2520,7 +2521,7 @@ function submitForm() {
     </div>
     <!-- Gallery End -->
 
-     <!-- Tour Booking Start -->
+    <!-- Tour Booking Start -->
     <div class="container-fluid booking py-5">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
@@ -2603,9 +2604,9 @@ function submitForm() {
                                         v-model="form.bd_phone"
                                         type="text"
                                         class="form-control bg-white border-0"
-                                        placeholder="BD Mobile No"
+                                        placeholder="Mobile No"
                                     />
-                                    <label for="bd_phone">BD Mobile</label>
+                                    <label for="bd_phone">Mobile</label>
                                     <div
                                         v-if="errors.bd_phone"
                                         class="text-white mt-1"
@@ -2615,18 +2616,30 @@ function submitForm() {
                                 </div>
                             </div>
 
-                            <!-- Abroad Phone -->
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input
-                                        v-model="form.abroad_phone"
-                                        type="text"
+                                        @input="
+                                            form.pdf = $event.target.files[0]
+                                        "
+                                        type="file"
                                         class="form-control bg-white border-0"
-                                        placeholder="Abroad Mobile No"
+                                        placeholder="PDF"
                                     />
-                                    <label for="abroad_phone"
-                                        >Abroad Mobile</label
+                                    <label for="pdf">PDF</label>
+                                    <div
+                                        v-if="errors.pdf"
+                                        class="text-white mt-1"
                                     >
+                                        {{ errors.pdf[0] }}
+                                    </div>
+                                    <progress
+                                        v-if="form.progress"
+                                        class="w-100"
+                                        :max="form.pdf.size"
+                                    >
+                                        {{ form.progress.percentage }}
+                                    </progress>
                                 </div>
                             </div>
 
@@ -2727,16 +2740,10 @@ function submitForm() {
                                         </ul>
                                     </div>
 
-                                    <!-- Hidden input -->
-                                    <input
-                                        type="hidden"
-                                        v-model="form.prefferred_country"
-                                    />
-
                                     <!-- Error -->
                                     <div
                                         v-if="errors.prefferred_country"
-                                        class="text-danger mt-1"
+                                        class="text-white mt-1"
                                     >
                                         {{ errors.prefferred_country[0] }}
                                     </div>

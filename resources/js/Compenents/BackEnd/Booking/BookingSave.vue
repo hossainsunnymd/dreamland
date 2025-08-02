@@ -17,7 +17,6 @@ const form = useForm({
     name: "",
     email: "",
     bd_phone: "",
-    abroad_phone: "",
     last_education: "",
     prefferred_country: "",
 });
@@ -28,7 +27,6 @@ if (booking_id != 0 && booking != null) {
     form.name = booking.name;
     form.email = booking.email;
     form.bd_phone = booking.bd_mobile;
-    form.abroad_phone = booking.abroad_mobile;
     form.last_education = booking.last_education;
     form.prefferred_country = booking.prefferred_country;
     URL = "/admin/booking/" + booking_id;
@@ -108,13 +106,6 @@ function selectUser(id){
                             <input v-model="form.bd_phone" type="text" class="form-control" />
                             <div v-if="errors.bd_phone" class="text-danger mt-1">{{ errors.bd_phone[0] }}</div>
                         </div>
-
-                        <!-- Abroad Phone -->
-                        <div class="mb-4">
-                            <label class="form-label">Abroad Phone</label>
-                            <input v-model="form.abroad_phone" type="text" class="form-control" />
-                        </div>
-
                         <!-- Preferred Country -->
                         <div class="mb-3">
                             <label class="form-label">Preferred Country</label>

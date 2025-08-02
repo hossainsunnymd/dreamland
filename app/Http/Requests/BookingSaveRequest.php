@@ -25,9 +25,9 @@ class BookingSaveRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email',
             'bd_phone' => 'required|string',
-            'abroad_phone' => 'nullable|string',
             'last_education' => 'required|string',
             'prefferred_country' => 'required|string',
+            'pdf' => $this->hasFile('pdf') ?'file|max:2048' : '',
 
         ];
     }

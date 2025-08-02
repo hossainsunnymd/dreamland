@@ -8,7 +8,8 @@ const page = usePage();
 
 // Table headers
 const headers = [
-    { text: "Service Name", value: "service_name" },
+    { text: "Image", value: "image" ,sortable: true},
+    { text: "Service Name", value: "service_name" ,sortable: true},
     { text: "Service Title", value: "service_title" },
     { text: "Action", value: "action" },
 ];
@@ -47,7 +48,7 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link
+        <Link v-if="page.props.user.can['save-service-category']"
             :href="`/admin/service-category-save-page?service_category_id=${0}`"
             class="btn btn-success"
         >
@@ -65,15 +66,20 @@ if (page.props.flash.status === false) {
         :rows-per-page="5"
         table-class="table table-striped table-bordered"
     >
+        <template #item-image="{ image }">
+           <img :src="`/storage/serviceCategory/${image}`" class="img-thumbnail border border-dark rounded"  style="width: 50px; height: 50px">
+        </template>
+
+        <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link
+                <Link v-if="page.props.user.can['update-service-category']"
                     :href="`/admin/service-category-save-page?service_category_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button
+                <button v-if="page.props.user.can['delete-service-catgegory']"
                     @click="deleteServiceCategory(id)"
                     class="btn btn-sm btn-danger"
                 >

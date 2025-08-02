@@ -18,10 +18,13 @@
         "@inertiajs/vue3": "^2.0.17",
         "@meforma/vue-toaster": "^1.3.0",
         "@vitejs/plugin-vue": "^6.0.1",
+        "@vueup/vue-quill": "^1.2.0",
         "bootstrap": "^5.3.7",
         "jquery": "^3.7.1",
         "lightbox2": "^2.11.5",
+        "nprogress": "^0.2.0",
         "owl.carousel": "^2.3.4",
-        "vue3-easy-data-table": "^1.5.47"
+        "vue3-easy-data-table": "^1.5.47",
+        "vue3-quill": "^0.3.1"
     }
 }

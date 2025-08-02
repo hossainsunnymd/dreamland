@@ -10,8 +10,9 @@ const page = usePage();
 const headers = [
     { text: "Id", value: "id" },
     { text: "Image", value: "service_image" },
-    { text: "Service Category", value: "service.service_category.service_name" },
+    { text: "Service Category", value: "service_category.service_name" },
     { text: "Service Description", value: "service_description" },
+    { text: "Rank", value: "rank" },
     { text: "Action", value: "action" },
 ];
 
@@ -24,7 +25,7 @@ const searchItem = ref();
 // Delete User
 function deleteService(id) {
     if (confirm("Are you sure you want to delete this Service?")) {
-        router.get(`/admin/sercices/${id}`);
+        router.get(`/admin/service/${id}`);
     }
 }
 
@@ -49,7 +50,7 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link
+        <Link v-if="page.props.user.can['save-service']"
             :href="`/admin/service-save-page?service_id=${0}`"
             class="btn btn-success"
         >
@@ -73,16 +74,20 @@ if (page.props.flash.status === false) {
                 style="width: 50px; height: 50px"
             />
         </template>
+
+          <template #item-service_description="{ service_description }">
+            <span v-html="service_description"></span>
+        </template>
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link
+                <Link v-if="page.props.user.can['update-service']"
                     :href="`/admin/service-save-page?service_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button
+                <button v-if="page.props.user.can['delete-service']"
                     @click="deleteService(id)"
                     class="btn btn-sm btn-danger"
                 >

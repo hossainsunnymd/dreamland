@@ -9,7 +9,7 @@ const props = defineProps({
 });
 
 const currentImage = props.serviceImage
-    ? `/storage/country/${props.serviceImage}`
+    ? `/storage/service/${props.serviceImage}`
     : null;
 const preview = ref(currentImage);
 const emit = defineEmits(["image"]);

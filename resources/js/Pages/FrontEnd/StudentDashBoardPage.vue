@@ -1,13 +1,13 @@
 <script setup>
-import SideNav from '../../Compenents/Layout/SideNav.vue';
+import StudentSideNav from '../../Compenents/Layout/StudentSideNav.vue';
 import StudentDashBoard from '../../Compenents/FrontEnd/StudentDashBoard.vue';
 </script>
 
 <template>
 
-    <SideNav>
+    <StudentSideNav>
         <StudentDashBoard/>
-    </SideNav>
+    </StudentSideNav>
 
 
 </template>

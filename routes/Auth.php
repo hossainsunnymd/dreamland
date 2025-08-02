@@ -39,4 +39,5 @@ Route::get('/reset-password-page', [ResetPasswordController::class, 'resetPasswo
 ->middleware(TokenVerificationMiddleware::class);
 
 //reset password
-Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
+Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password')
+->middleware(TokenVerificationMiddleware::class);

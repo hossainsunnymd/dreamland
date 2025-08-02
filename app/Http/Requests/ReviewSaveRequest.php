@@ -23,9 +23,9 @@ class ReviewSaveRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'title'=> 'nullable|string|max:255',
-            'rating' => 'nullable|numeric|min:1',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:100',
+            'title' => 'nullable|string|max:255',
+            'rating' => 'required|numeric|min:1|max:5',
+            'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
             'description' => 'required|string',
         ];
     }

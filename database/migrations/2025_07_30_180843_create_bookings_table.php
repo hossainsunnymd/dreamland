@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('bd_mobile');
-            $table->string('abroad_mobile')->nullable();
             $table->string('last_education');
             $table->string('prefferred_country');
+            $table->string('pdf')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

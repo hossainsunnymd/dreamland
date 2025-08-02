@@ -23,7 +23,7 @@ class CountrySaveRequest extends FormRequest
     {
         return [
             'country_name' => 'required|string|max:255',
-            'country_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:100',
+            'country_image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
         ];
     }
 }

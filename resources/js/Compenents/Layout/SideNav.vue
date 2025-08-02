@@ -35,84 +35,185 @@ function toggleSidebar() {
                         ></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Hi, Super admin</h6>
-                        <span>Admin</span>
+                        <h6 class="">
+                            Hi, {{ page.props.user.authUser.name }}
+                        </h6>
                     </div>
                 </div>
 
                 <!-- Sidebar Nav -->
-                <div class="admin-navbar-nav w-100 d-flex flex-column gy-2 mt-3">
+                <div
+                    class="admin-navbar-nav w-100 d-flex flex-column gy-2 mt-3"
+                >
+                    <!-- Dashboard -->
                     <Link
-                        :href="page.props.user.user_role == 'admin' ? '/admin/dashboard' : '/student/dashboard'"
+                        href="/admin/dashboard"
                         :class="[
                             'admin-nav-item admin-nav-link',
                             isActiveRoute('/dashboard') ? 'active' : '',
                         ]"
+                        style="text-decoration: none"
                     >
-                        <i class="fa fa-tachometer-alt"></i> Dashboard
+                        <i class="fa fa-tachometer-alt me-2"></i> Dashboard
                     </Link>
 
-                      <Link
+                    <!-- Countries -->
+                    <Link
+                        v-if="page.props.user.can['country-list']"
                         href="/admin/countries"
                         :class="[
                             'admin-nav-item admin-nav-link',
                             isActiveRoute('/countries') ? 'active' : '',
                         ]"
+                        style="text-decoration: none"
                     >
-                        <i class="fa fa-tachometer-alt"></i> Countries
+                        <i class="fa fa-flag me-2"></i> Countries
                     </Link>
 
+                    <!-- Country Details -->
                     <Link
+                        v-if="page.props.user.can['country-detail-list']"
+                        href="/admin/country-details"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/country-details') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-globe me-2"></i> Country Details
+                    </Link>
+
+                    <!-- University -->
+                    <Link
+                        v-if="page.props.user.can['university-list']"
+                        href="/admin/universities"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/universities') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-graduation-cap me-2"></i> University
+                    </Link>
+
+                    <!-- Bookings -->
+                    <Link
+                        v-if="page.props.user.can['booking-list']"
                         href="/admin/bookings"
                         :class="[
                             'admin-nav-item admin-nav-link',
                             isActiveRoute('/bookings') ? 'active' : '',
                         ]"
+                        style="text-decoration: none"
                     >
-                        <i class="fa fa-tachometer-alt"></i> Bookings
+                        <i class="fa fa-calendar-check me-2"></i> Bookings
                     </Link>
 
-                       <Link
+                    <!-- Success Stories -->
+                    <Link
+                        v-if="page.props.user.can['success-stories-list']"
                         href="/admin/success-stories"
                         :class="[
                             'admin-nav-item admin-nav-link',
                             isActiveRoute('/success-stories') ? 'active' : '',
                         ]"
+                        style="text-decoration: none"
                     >
-                        <i class="fa fa-tachometer-alt"></i> Success Stories
+                        <i class="fa fa-trophy me-2"></i> Success Stories
                     </Link>
 
-                      <Link
+                    <!-- Reviews -->
+                    <Link
+                        v-if="page.props.user.can['review-list']"
                         href="/admin/reviews"
                         :class="[
                             'admin-nav-item admin-nav-link',
                             isActiveRoute('/reviews') ? 'active' : '',
                         ]"
+                        style="text-decoration: none"
                     >
-                        <i class="fa fa-tachometer-alt"></i> Reviews
+                        <i class="fa fa-comments me-2"></i> Reviews
                     </Link>
 
-                      <Link
+                    <!-- Service Category -->
+                    <Link
+                        v-if="page.props.user.can['service-category-list']"
                         href="/admin/service-categories"
                         :class="[
                             'admin-nav-item admin-nav-link',
-                            isActiveRoute('/service-categories') ? 'active' : '',
+                            isActiveRoute('/service-categories')
+                                ? 'active'
+                                : '',
                         ]"
+                        style="text-decoration: none"
                     >
-                        <i class="fa fa-tachometer-alt"></i> Service Category
+                        <i class="fa fa-th-large me-2"></i> Service Category
                     </Link>
 
-                      <Link
+                    <!-- Services -->
+                    <Link
+                        v-if="page.props.user.can['service-list']"
                         href="/admin/services"
                         :class="[
                             'admin-nav-item admin-nav-link',
                             isActiveRoute('/services') ? 'active' : '',
                         ]"
+                        style="text-decoration: none"
                     >
-                        <i class="fa fa-tachometer-alt"></i> Services
+                        <i class="fa fa-concierge-bell me-2"></i> Services
                     </Link>
 
+                    <!-- Roles -->
+                    <Link
+                        v-if="page.props.user.can['list-role']"
+                        href="/admin/roles"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/roles') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-user-shield me-2"></i> Roles
+                    </Link>
 
+                    <!-- Users -->
+                    <Link
+                        v-if="page.props.user.can['list-user']"
+                        href="/admin/users"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/users') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-users me-2"></i> Users
+                    </Link>
+
+                    <!-- Students -->
+                    <Link
+                        v-if="page.props.user.can['student-list']"
+                        href="/admin/students"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/students') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-user-graduate me-2"></i> Students
+                    </Link>
+
+                    <!-- Page contents -->
+                    <Link
+                        v-if="page.props.user.can['page-content-list']"
+                        href="/admin/page-contents"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/page-contents') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-file-alt me-2"></i> Page Contents
+                    </Link>
                 </div>
             </nav>
         </div>
@@ -128,10 +229,7 @@ function toggleSidebar() {
                 class="admin-navbar admin-navbar-expand d-flex sticky-top px-4 py-0"
                 style="background-color: #f3f6f9; height: 50px"
             >
-                <a
-                    href="index.html"
-                    class="admin-navbar-brand d-flex d-lg-none me-4"
-                >
+                <a href="#" class="admin-navbar-brand d-flex d-lg-none me-4">
                     <h2 class="text-primary mb-0">
                         <i class="fa fa-hashtag"></i>
                     </h2>
@@ -150,20 +248,19 @@ function toggleSidebar() {
                             class="admin-nav-link dropdown-toggle"
                             data-bs-toggle="dropdown"
                         >
-                            <span class="d-none d-lg-inline-flex">
-                                {{ page.props.user.name }}
-                            </span>
+                            <span class="d-none d-lg-inline-flex">{{
+                                page.props.user.authUser.name
+                            }}</span>
                         </a>
                         <div
                             class="dropdown-menu dropdown-menu-end admin-bg-light border-0 rounded-0 rounded-bottom m-0"
                         >
-                            <Link href="/logout" class="dropdown-item">Log Out</Link>
-                            <Link
-                                :href="page.props.user.user_role == 'admin' ? '/admin/profile' : '/student/profile'"
-                                class="dropdown-item"
+                            <Link href="/logout" class="dropdown-item"
+                                >Log Out</Link
                             >
-                                Profile
-                            </Link>
+                            <Link href="/profile" class="dropdown-item"
+                                >Profile</Link
+                            >
                         </div>
                     </div>
                 </div>

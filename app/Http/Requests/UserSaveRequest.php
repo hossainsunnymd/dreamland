@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserSaveRequest extends FormRequest
@@ -23,8 +24,8 @@ class UserSaveRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
+            'email' => 'required|email|unique:users,email,' . $this->route('id'),
+            'password' => ['required',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
             'phone' => 'required|string',
         ];
     }
