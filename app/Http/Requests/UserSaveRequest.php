@@ -27,6 +27,8 @@ class UserSaveRequest extends FormRequest
             'email' => 'required|email|unique:users,email,' . $this->route('id'),
             'password' => ['required',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
             'phone' => 'required|string',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'abroad_mobile' => 'nullable|string',
         ];
     }
 }
