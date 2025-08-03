@@ -11,7 +11,7 @@ class LogoSaveRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class LogoSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // 'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'nullable|string',
+            'title' => 'required|string|max:255',
+            'content_name' => 'required|string|max:255',
         ];
     }
 }

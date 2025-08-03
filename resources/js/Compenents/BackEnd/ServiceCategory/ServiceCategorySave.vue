@@ -58,7 +58,8 @@ function submitForm() {
 
              <div class="mb-3">
               <label class="form-label"> Service Title</label>
-              <input v-model="form.service_title" type="text" class="form-control" />
+              <textarea v-model="form.service_title" type="text" class="form-control" >
+              </textarea>
               <div v-if="errors.service_title" class="text-danger">{{ errors.service_title[0] }}</div>
             </div>
             <div class="mb-3">

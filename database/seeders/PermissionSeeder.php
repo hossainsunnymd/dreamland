@@ -85,11 +85,11 @@ class PermissionSeeder extends Seeder
             'page-content-delete',
 
             //logo
-            'list-logo',
+            'logo-list',
             'logo-save-page',
-            'create-logo',
-            'update-logo',
-            'delete-logo',
+            'logo-save',
+            'logo-update',
+            'logo-delete',
 
             //universities
             'university-list',

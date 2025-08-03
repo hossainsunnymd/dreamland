@@ -45,6 +45,7 @@ Route::middleware([TokenVerificationMiddleware::class, AdminMiddleware::class])-
     require_once __DIR__ . '/Student.php';
     require_once __DIR__ . '/PageContent.php';
     require_once __DIR__ . '/University.php';
+    require_once __DIR__ . '/Logo.php';
 });
 
 

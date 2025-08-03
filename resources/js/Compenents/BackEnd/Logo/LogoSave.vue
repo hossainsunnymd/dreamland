@@ -14,15 +14,17 @@ const errors = computed(() => page.props.errors || {});
 const form = useForm({
     content_name: "",
     image: "",
+    title: "",
 });
 
 if(logo_id != 0 && logo != null){
     form.content_name = logo.content_name;
+    form.title = logo.title;
     form.image = logo.image;
 
 }
 
-const URL = logo_id != 0 ? `/admin/logo/${country_id}` : "/admin/logo";
+const URL = logo_id != 0 ? `/admin/logo/${logo_id}` : "/admin/logo";
 
 function submitForm() {
   form.post(URL, {
@@ -30,7 +32,7 @@ function submitForm() {
     onSuccess: () => {
       if (page.props.flash.status == true) {
         toaster.success(page.props.flash.message);
-        router.get("/admin/countries");
+        router.get("/admin/logos");
       } else if (page.props.flash.status == false) {
         toaster.error(page.props.flash.message);
       }
@@ -46,12 +48,18 @@ function submitForm() {
       <!-- Booking Form -->
       <div class="col-md-6">
         <div class="card shadow p-4 bg-white">
-          <h4 class="text-center mb-3">{{ country_id == 0 ? "Create Logo" : "Update Logo" }}</h4>
+          <h4 class="text-center mb-3">{{ logo_id == 0 ? "Create Logo/Banner" : "Update Logo/Banner" }}</h4>
           <form @submit.prevent="submitForm">
             <div class="mb-3">
-              <label class="form-label">Logo Name</label>
+              <label class="form-label">Name</label>
               <input v-model="form.content_name" type="text" class="form-control" />
-              <div v-if="errors.country_name" class="text-danger">{{ errors.country_name[0] }}</div>
+              <div v-if="errors.content_name" class="text-danger">{{ errors.content_name[0] }}</div>
+            </div>
+
+              <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input v-model="form.title" type="text" class="form-control" />
+              <div v-if="errors.title" class="text-danger">{{ errors.title[0] }}</div>
             </div>
 
             <div class="mb-3">

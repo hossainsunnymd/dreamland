@@ -5,6 +5,7 @@ import { computed, ref } from "vue";
 
 const toaster = createToaster({});
 const page = usePage();
+console.log(page.props.serviceList);
 const errors = computed(() => page.props.errors || {});
 
 const form = useForm({

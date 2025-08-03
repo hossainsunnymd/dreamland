@@ -13,7 +13,7 @@ import SearviceCard from '../../Compenents/SearviceCard.vue';
    <Navbar/>
    <Hero/>
    <Home/>
-   <SearviceCard/>
+   <!-- <SearviceCard/> -->
    <Footer/>
 </template>
 

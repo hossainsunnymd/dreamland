@@ -9,6 +9,8 @@ use App\Models\Booking;
 use App\Models\Country;
 use App\Models\Services;
 use App\Http\Controllers\Controller;
+use App\Models\Logo;
+use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
@@ -92,8 +94,9 @@ class PageController extends Controller
 
     //services
     public function services(){
-        $services=Services::all();
-        return Inertia::render('FrontEnd/ServicesPage',['services'=>$services]);
+        $serviceCategories=ServiceCategory::all();
+        $logo=Logo::where('content_name','Services')->first();
+        return Inertia::render('FrontEnd/ServicesPage',['serviceCategories'=>$serviceCategories,'logo'=>$logo,]);
     }
 
     //guides

@@ -20,7 +20,7 @@ const searchField = ref(["id", "name"]);
 const searchItem = ref();
 
 // Delete User
-function deleteCountry(id) {
+function deleteLogo(id) {
     if (confirm("Are you sure you want to delete this Logo?")) {
         router.get(`/admin/logos/${id}`);
     }

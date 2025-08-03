@@ -10,8 +10,7 @@ import PageComponent from '../../Compenents/PageComponent.vue';
 
     <Topper/>
     <Navbar/>
-    <!-- <Services/> -->
-    <PageComponent/>
+    <Services/>
     <Footer/>
 </template>
 

@@ -5,6 +5,7 @@ import { createToaster } from "@meforma/vue-toaster";
 
 const toaster = createToaster({});
 const page = usePage();
+console.log(page.props.countries);
 
 // Table headers
 const headers = [
@@ -15,6 +16,8 @@ const headers = [
 
 // Users and search fields
 const items = ref(page.props.countries || []);
+
+
 
 const searchField = ref(["id", "name"]);
 const searchItem = ref();

@@ -214,6 +214,19 @@ function toggleSidebar() {
                     >
                         <i class="fa fa-file-alt me-2"></i> Page Contents
                     </Link>
+
+                    <!-- logo/content -->
+                    <Link
+                        v-if="page.props.user.can['logo-list']"
+                        href="/admin/logos"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/logo') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-file-alt me-2"></i> Logo/Banner
+                    </Link>
                 </div>
             </nav>
         </div>
